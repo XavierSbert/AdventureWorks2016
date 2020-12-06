@@ -44,12 +44,14 @@ namespace FormUI
                 $" WHERE Production.ProductModel.Name Like '%{_ProductName}%' AND Production.ProductModelProductDescriptionCulture.CultureID = 'en'";
                 DetPro product = connection.Query<DetPro>(sql).FirstOrDefault();
                 textBoxName.Text = product.Name.ToString();
-                MessageBox.Show(product.Category.ToString());
                 textBoxCategory.Text = product.Category;
                 textBoxSubcategory.Text = product.Subcategory.ToString();
                 textBoxDescription.Text = product.Description.ToString();
-                textBoxPL.Text = product.ListPrice.ToString();
-
+                textBoxPrice.Text = product.ListPrice.ToString();
+                textBoxSize.Text = product.Size.ToString();
+                textBoxPL.Text = product.ProLine.ToString();
+                textBoxClass.Text = product.Class.ToString();
+                textBoxStyle.Text = product.Style.ToString();        
             }
         }
     }

@@ -251,7 +251,6 @@
             this.Controls.Add(this.textBoxName);
             this.MaximumSize = new System.Drawing.Size(816, 381);
             this.MinimumSize = new System.Drawing.Size(816, 381);
-            this.Name = "FormProduct";
             this.Text = "FormProduct";
             this.Load += new System.EventHandler(this.FormProduct_Load);
             this.groupBox1.ResumeLayout(false);

@@ -439,9 +439,7 @@ namespace FormUI
 
         private void listViewProduct_DoubleClick(object sender, EventArgs e)
         {
-            MessageBox.Show(listViewProduct.SelectedItems[0].Text);
                 string productSelected = listViewProduct.SelectedItems[0].Text;
-            MessageBox.Show(productSelected.Split(',')[0]);
             string ProductName = productSelected.Split(',')[0];
                 FormProduct formProduct = new FormProduct(ProductName);
                 formProduct.ShowDialog();
