@@ -53,6 +53,7 @@
             this.comboBoxClass = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.AdventureWorks2016 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBoxFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).BeginInit();
@@ -160,7 +161,6 @@
             this.listViewProduct.TabIndex = 10;
             this.listViewProduct.UseCompatibleStateImageBehavior = false;
             this.listViewProduct.View = System.Windows.Forms.View.List;
-            this.listViewProduct.SelectedIndexChanged += new System.EventHandler(this.listViewProduct_SelectedIndexChanged);
             // 
             // comboBoxLanguage
             // 
@@ -172,6 +172,7 @@
             this.comboBoxLanguage.Name = "comboBoxLanguage";
             this.comboBoxLanguage.Size = new System.Drawing.Size(76, 23);
             this.comboBoxLanguage.TabIndex = 11;
+            this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxLanguage_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -204,6 +205,7 @@
             // 
             this.groupBoxFilter.BackColor = System.Drawing.Color.RoyalBlue;
             this.groupBoxFilter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.groupBoxFilter.Controls.Add(this.checkBox1);
             this.groupBoxFilter.Controls.Add(this.numericUpDownMax);
             this.groupBoxFilter.Controls.Add(this.numericUpDownMin);
             this.groupBoxFilter.Controls.Add(this.labelmax);
@@ -331,6 +333,17 @@
             this.AdventureWorks2016.TabIndex = 16;
             this.AdventureWorks2016.Text = "AdventureWorks2016";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(12, 286);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(86, 20);
+            this.checkBox1.TabIndex = 26;
+            this.checkBox1.Text = "Available";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -392,6 +405,7 @@
         private System.Windows.Forms.Label labelmax;
         private System.Windows.Forms.NumericUpDown numericUpDownMax;
         private System.Windows.Forms.NumericUpDown numericUpDownMin;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

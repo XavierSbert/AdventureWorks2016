@@ -180,7 +180,7 @@ namespace FormUI
                     " inner join Production.ProductDescription on Production.ProductDescription.ProductDescriptionID = Production.ProductModelProductDescriptionCulture.ProductDescriptionID" +
                     " inner join Production.ProductSubcategory on Production.Product.ProductSubcategoryID = Production.ProductSubcategory.ProductSubcategoryID" +
                     " inner join Production.ProductCategory on Production.ProductCategory.ProductCategoryID = Production.ProductSubcategory.ProductCategoryID" +
-                    $" AND Production.ProductModelProductDescriptionCulture.CultureID = '{comboBoxLanguage.Text}' AND Production.ProductModel.Name like '%{textBoxProduct.Text}%'";
+                    $" where Production.ProductModelProductDescriptionCulture.CultureID = '{comboBoxLanguage.Text}' AND Production.ProductModel.Name like '%{textBoxProduct.Text}%'";
                     List<Product> pl = new List<Product>();
                     pl = connection.Query<Product>(sql).ToList();
                     if (pl.Count() > 1)
@@ -227,14 +227,6 @@ namespace FormUI
                 comboBoxSubCategory.Items.Clear();
                 SubCatLoad(comboBoxCategoria.Text);
             }
-
-
-        
-        }
-
-        private void listViewProduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void comboBoxSubCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -274,6 +266,52 @@ namespace FormUI
                 ProductLineLoad(comboBoxCategoria.Text, comboBoxSubCategory.Text);
                 SizeLoad(comboBoxCategoria.Text, comboBoxSubCategory.Text);
             }
+        }
+
+        private void comboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxProduct.Clear();
+            comboBoxStyle.Text = "";
+            comboBoxStyle.Items.Clear();
+            comboBoxClass.Text = "";
+            comboBoxClass.Items.Clear();
+            comboBoxProductLine.Text = "";
+            comboBoxProductLine.Items.Clear();
+            comboBoxSize.Text = "";
+            comboBoxSize.Items.Clear();
+            listViewProduct.Clear();
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("ProductModel")))
+            {               
+                    string sql =
+                    "Select DISTINCT Production.ProductModel.Name, Production.ProductDescription.Description from Production.Product" +
+                    " inner join Production.ProductModel on Production.ProductModel.ProductModelID = Production.Product.ProductModelID" +
+                    " inner join Production.ProductModelProductDescriptionCulture on Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID" +
+                    " inner join Production.ProductDescription on Production.ProductDescription.ProductDescriptionID = Production.ProductModelProductDescriptionCulture.ProductDescriptionID" +
+                    " inner join Production.ProductSubcategory on Production.Product.ProductSubcategoryID = Production.ProductSubcategory.ProductSubcategoryID" +
+                    " inner join Production.ProductCategory on Production.ProductCategory.ProductCategoryID = Production.ProductSubcategory.ProductCategoryID" +
+                    $" WHERE Production.ProductCategory.Name LIKE '{comboBoxCategoria.Text}' AND Production.ProductSubcategory.Name LIKE '{comboBoxSubCategory.Text}' AND Production.ProductModelProductDescriptionCulture.CultureID = '{comboBoxLanguage.Text} '";
+                    List<Product> pl = new List<Product>();
+                    pl = connection.Query<Product>(sql).ToList();
+                    if (pl.Count() > 1)
+                    {
+                        foreach (Product category in pl)
+                        {
+                            listViewProduct.Items.Add(category.ToString());
+                        }
+                    }
+                
+
+            }
+            if (comboBoxSubCategory.Text.Length >= 1)
+            {
+                comboBoxSubCategory_SelectedIndexChanged(sender, e);
+            }else
+            {
+                comboBoxCategoria_SelectedIndexChanged(sender, e);
+            }
+           
+
+
         }
 
         // ------------------- FILTERS -----------------
@@ -352,6 +390,51 @@ namespace FormUI
         private void numericUpDownMax_ValueChanged(object sender, EventArgs e)
         {
             Filters();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox1.Checked)
+            {
+                listViewProduct.Items.Clear();
+                using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("ProductModel")))
+                {
+                    string sql =
+                "Select DISTINCT Production.ProductModel.Name, Production.ProductDescription.Description from Production.Product" +
+                " inner join Production.ProductModel on Production.ProductModel.ProductModelID = Production.Product.ProductModelID" +
+                " inner join Production.ProductModelProductDescriptionCulture on Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID" +
+                " inner join Production.ProductDescription on Production.ProductDescription.ProductDescriptionID = Production.ProductModelProductDescriptionCulture.ProductDescriptionID" +
+                " inner join Production.ProductSubcategory on Production.Product.ProductSubcategoryID = Production.ProductSubcategory.ProductSubcategoryID" +
+                " inner join Production.ProductCategory on Production.ProductCategory.ProductCategoryID = Production.ProductSubcategory.ProductCategoryID" +
+                $" WHERE Production.ProductCategory.Name LIKE '{comboBoxCategoria.Text}' AND Production.ProductSubcategory.Name LIKE '{comboBoxSubCategory.Text}'" +
+                $" AND ( Production.Product.Size is null or Production.Product.Size like '%{comboBoxSize.Text}%')" +
+                $" AND ( Production.Product.ProductLine is null or Production.Product.ProductLine like '%{comboBoxProductLine.Text}%' )" +
+                $" AND ( Production.Product.Class is null or Production.Product.Class like '%{comboBoxClass.Text}%')" +
+                $" AND ( Production.Product.Style is null or Production.Product.Style like '%{comboBoxStyle.Text}%')" +
+                $" and Production.Product.ListPrice BETWEEN {numericUpDownMin.Value} and {numericUpDownMax.Value} " +
+                $" AND Production.Product.SellEndDate is null" +
+                $" AND Production.ProductModelProductDescriptionCulture.CultureID = '{comboBoxLanguage.Text}'";
+
+                    List<Product> size = new List<Product>();
+                    size = connection.Query<Product>(sql).ToList();
+                    if (size.Count == 0)
+                    {
+                        MessageBox.Show("There is no product with these filters. TRY ANOTHER COMBINATION", "Warning message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    }
+                    else
+                    {
+                        foreach (Product category in size)
+                        {
+                            listViewProduct.Items.Add(category.ToString());
+                        }
+                    }
+                }
+            }else
+            {
+                Filters();
+            }
+
         }
     }
 }
