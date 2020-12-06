@@ -32,7 +32,6 @@ namespace FormUI
                 }
             }
             comboBoxLanguage.SelectedIndex = 0;
-
         }
 
         private void SubCatLoad(string cate)
@@ -165,25 +164,31 @@ namespace FormUI
 
         }
 
+        // Boton de busqueda
         private void button1_Click(object sender, EventArgs e)
         {
+            listViewProduct.Clear();
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("ProductModel")))
             {
-                string sql =
-                "Select DISTINCT Production.ProductModel.Name from Production.Product" +
-                " inner join Production.ProductModel on Production.ProductModel.ProductModelID = Production.Product.ProductModelID" +
-                " inner join Production.ProductModelProductDescriptionCulture on Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID" +
-                " inner join Production.ProductDescription on Production.ProductDescription.ProductDescriptionID = Production.ProductModelProductDescriptionCulture.ProductDescriptionID" +
-                " inner join Production.ProductSubcategory on Production.Product.ProductSubcategoryID = Production.ProductSubcategory.ProductSubcategoryID" +
-                " inner join Production.ProductCategory on Production.ProductCategory.ProductCategoryID = Production.ProductSubcategory.ProductCategoryID" +
-                $" WHERE Production.ProductCategory.Name LIKE '{comboBoxCategoria.Text}' AND Production.ProductSubcategory.Name LIKE '{comboBoxSubCategory.Text}' AND Production.ProductModelProductDescriptionCulture.CultureID = '{comboBoxLanguage.Text}' AND Production.ProductModel.Name like '%{textBoxProduct.Text}%'";
-                List<string> pl = new List<string>();
-                pl = connection.Query<string>(sql).ToList();
-                if (pl.Count() > 1)
+
+                if (textBoxProduct.Text.Length >= 1)
                 {
-                    foreach (string category in pl)
+                    string sql =
+                    "Select DISTINCT Production.ProductModel.Name, Production.ProductDescription.Description from Production.Product" +
+                    " inner join Production.ProductModel on Production.ProductModel.ProductModelID = Production.Product.ProductModelID" +
+                    " inner join Production.ProductModelProductDescriptionCulture on Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID" +
+                    " inner join Production.ProductDescription on Production.ProductDescription.ProductDescriptionID = Production.ProductModelProductDescriptionCulture.ProductDescriptionID" +
+                    " inner join Production.ProductSubcategory on Production.Product.ProductSubcategoryID = Production.ProductSubcategory.ProductSubcategoryID" +
+                    " inner join Production.ProductCategory on Production.ProductCategory.ProductCategoryID = Production.ProductSubcategory.ProductCategoryID" +
+                    $" AND Production.ProductModelProductDescriptionCulture.CultureID = '{comboBoxLanguage.Text}' AND Production.ProductModel.Name like '%{textBoxProduct.Text}%'";
+                    List<Product> pl = new List<Product>();
+                    pl = connection.Query<Product>(sql).ToList();
+                    if (pl.Count() > 1)
                     {
-                        listViewProduct.Items.Add(category);
+                        foreach (Product category in pl)
+                        {
+                            listViewProduct.Items.Add(category.ToString());
+                        }
                     }
                 }
 
@@ -209,6 +214,7 @@ namespace FormUI
                 {
                     listViewProduct.Items.Add(category.ToString());
                 }
+                textBoxProduct.Clear();
                 comboBoxStyle.Text = "";
                 comboBoxStyle.Items.Clear();
                 comboBoxClass.Text = "";
@@ -250,7 +256,7 @@ namespace FormUI
                 {
                     listViewProduct.Items.Add(category.ToString());
                 }
-
+                textBoxProduct.Clear();
                 comboBoxStyle.Text = "";
                 comboBoxStyle.Items.Clear();
                 comboBoxClass.Text = "";
@@ -278,7 +284,7 @@ namespace FormUI
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("ProductModel")))
             {
                 string sql =
-            "Select DISTINCT Production.Product.Name, Production.ProductDescription.Description from Production.Product" +
+            "Select DISTINCT Production.ProductModel.Name, Production.ProductDescription.Description from Production.Product" +
             " inner join Production.ProductModel on Production.ProductModel.ProductModelID = Production.Product.ProductModelID" +
             " inner join Production.ProductModelProductDescriptionCulture on Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID" +
             " inner join Production.ProductDescription on Production.ProductDescription.ProductDescriptionID = Production.ProductModelProductDescriptionCulture.ProductDescriptionID" +

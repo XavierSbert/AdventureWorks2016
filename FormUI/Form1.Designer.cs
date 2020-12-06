@@ -43,6 +43,8 @@
             this.comboBoxProductLine = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBoxFilter = new System.Windows.Forms.GroupBox();
+            this.numericUpDownMax = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownMin = new System.Windows.Forms.NumericUpDown();
             this.labelmax = new System.Windows.Forms.Label();
             this.labmin = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -51,16 +53,14 @@
             this.comboBoxClass = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.AdventureWorks2016 = new System.Windows.Forms.Label();
-            this.numericUpDownMin = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownMax = new System.Windows.Forms.NumericUpDown();
             this.groupBoxFilter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxProduct
             // 
-            this.textBoxProduct.Location = new System.Drawing.Point(682, 28);
+            this.textBoxProduct.Location = new System.Drawing.Point(637, 28);
             this.textBoxProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxProduct.Name = "textBoxProduct";
             this.textBoxProduct.Size = new System.Drawing.Size(90, 21);
@@ -70,24 +70,26 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(627, 31);
+            this.label1.Location = new System.Drawing.Point(545, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 15);
+            this.label1.Size = new System.Drawing.Size(86, 15);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Product";
+            this.label1.Text = "Product Name";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.button1.Image = global::FormUI.Properties.Resources.find;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(778, 24);
+            this.button1.Location = new System.Drawing.Point(732, 25);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(99, 31);
+            this.button1.Size = new System.Drawing.Size(144, 27);
             this.button1.TabIndex = 3;
-            this.button1.Text = "SEARCH";
+            this.button1.Text = "GLOBAL SEARCH";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -152,7 +154,7 @@
             // 
             this.listViewProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewProduct.HideSelection = false;
-            this.listViewProduct.Location = new System.Drawing.Point(195, 57);
+            this.listViewProduct.Location = new System.Drawing.Point(195, 62);
             this.listViewProduct.Name = "listViewProduct";
             this.listViewProduct.Size = new System.Drawing.Size(682, 445);
             this.listViewProduct.TabIndex = 10;
@@ -225,6 +227,32 @@
             this.groupBoxFilter.TabIndex = 15;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Filters";
+            // 
+            // numericUpDownMax
+            // 
+            this.numericUpDownMax.Location = new System.Drawing.Point(58, 257);
+            this.numericUpDownMax.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numericUpDownMax.Name = "numericUpDownMax";
+            this.numericUpDownMax.Size = new System.Drawing.Size(100, 23);
+            this.numericUpDownMax.TabIndex = 25;
+            this.numericUpDownMax.ValueChanged += new System.EventHandler(this.numericUpDownMax_ValueChanged);
+            // 
+            // numericUpDownMin
+            // 
+            this.numericUpDownMin.Location = new System.Drawing.Point(58, 227);
+            this.numericUpDownMin.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numericUpDownMin.Name = "numericUpDownMin";
+            this.numericUpDownMin.Size = new System.Drawing.Size(100, 23);
+            this.numericUpDownMin.TabIndex = 24;
+            this.numericUpDownMin.ValueChanged += new System.EventHandler(this.numericUpDownMin_ValueChanged);
             // 
             // labelmax
             // 
@@ -303,37 +331,11 @@
             this.AdventureWorks2016.TabIndex = 16;
             this.AdventureWorks2016.Text = "AdventureWorks2016";
             // 
-            // numericUpDownMin
-            // 
-            this.numericUpDownMin.Location = new System.Drawing.Point(58, 227);
-            this.numericUpDownMin.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.numericUpDownMin.Name = "numericUpDownMin";
-            this.numericUpDownMin.Size = new System.Drawing.Size(100, 23);
-            this.numericUpDownMin.TabIndex = 24;
-            this.numericUpDownMin.ValueChanged += new System.EventHandler(this.numericUpDownMin_ValueChanged);
-            // 
-            // numericUpDownMax
-            // 
-            this.numericUpDownMax.Location = new System.Drawing.Point(58, 257);
-            this.numericUpDownMax.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.numericUpDownMax.Name = "numericUpDownMax";
-            this.numericUpDownMax.Size = new System.Drawing.Size(100, 23);
-            this.numericUpDownMax.TabIndex = 25;
-            this.numericUpDownMax.ValueChanged += new System.EventHandler(this.numericUpDownMax_ValueChanged);
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(889, 535);
             this.Controls.Add(this.AdventureWorks2016);
             this.Controls.Add(this.groupBoxFilter);
@@ -349,13 +351,16 @@
             this.Controls.Add(this.textBoxProduct);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MaximumSize = new System.Drawing.Size(905, 574);
+            this.MinimumSize = new System.Drawing.Size(905, 574);
             this.Name = "Form1";
-            this.Text = " ";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = " AdventureWorks2016 - Xavier Sbert";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxFilter.ResumeLayout(false);
             this.groupBoxFilter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
