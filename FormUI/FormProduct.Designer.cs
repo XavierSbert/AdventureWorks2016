@@ -35,11 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBoxStyle = new System.Windows.Forms.ComboBox();
-            this.numericUpDownPrice2 = new System.Windows.Forms.NumericUpDown();
-            this.comboBoxClass = new System.Windows.Forms.ComboBox();
-            this.comboBoxProductLine2 = new System.Windows.Forms.ComboBox();
-            this.comboBoxSize2 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,8 +43,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxCategory = new System.Windows.Forms.TextBox();
             this.textBoxSubcategory = new System.Windows.Forms.TextBox();
+            this.textBoxSize = new System.Windows.Forms.TextBox();
+            this.textBoxPL = new System.Windows.Forms.TextBox();
+            this.textBoxClass = new System.Windows.Forms.TextBox();
+            this.textBoxStyle = new System.Windows.Forms.TextBox();
+            this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrice2)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxName
@@ -111,11 +110,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBoxStyle);
-            this.groupBox1.Controls.Add(this.numericUpDownPrice2);
-            this.groupBox1.Controls.Add(this.comboBoxClass);
-            this.groupBox1.Controls.Add(this.comboBoxProductLine2);
-            this.groupBox1.Controls.Add(this.comboBoxSize2);
+            this.groupBox1.Controls.Add(this.textBoxPrice);
+            this.groupBox1.Controls.Add(this.textBoxStyle);
+            this.groupBox1.Controls.Add(this.textBoxClass);
+            this.groupBox1.Controls.Add(this.textBoxPL);
+            this.groupBox1.Controls.Add(this.textBoxSize);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -127,45 +126,6 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details";
-            // 
-            // comboBoxStyle
-            // 
-            this.comboBoxStyle.FormattingEnabled = true;
-            this.comboBoxStyle.Location = new System.Drawing.Point(88, 112);
-            this.comboBoxStyle.Name = "comboBoxStyle";
-            this.comboBoxStyle.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxStyle.TabIndex = 11;
-            // 
-            // numericUpDownPrice2
-            // 
-            this.numericUpDownPrice2.Location = new System.Drawing.Point(89, 139);
-            this.numericUpDownPrice2.Name = "numericUpDownPrice2";
-            this.numericUpDownPrice2.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownPrice2.TabIndex = 13;
-            // 
-            // comboBoxClass
-            // 
-            this.comboBoxClass.FormattingEnabled = true;
-            this.comboBoxClass.Location = new System.Drawing.Point(88, 85);
-            this.comboBoxClass.Name = "comboBoxClass";
-            this.comboBoxClass.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxClass.TabIndex = 12;
-            // 
-            // comboBoxProductLine2
-            // 
-            this.comboBoxProductLine2.FormattingEnabled = true;
-            this.comboBoxProductLine2.Location = new System.Drawing.Point(88, 56);
-            this.comboBoxProductLine2.Name = "comboBoxProductLine2";
-            this.comboBoxProductLine2.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxProductLine2.TabIndex = 11;
-            // 
-            // comboBoxSize2
-            // 
-            this.comboBoxSize2.FormattingEnabled = true;
-            this.comboBoxSize2.Location = new System.Drawing.Point(88, 29);
-            this.comboBoxSize2.Name = "comboBoxSize2";
-            this.comboBoxSize2.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxSize2.TabIndex = 10;
             // 
             // label8
             // 
@@ -239,6 +199,41 @@
             this.textBoxSubcategory.Size = new System.Drawing.Size(121, 20);
             this.textBoxSubcategory.TabIndex = 16;
             // 
+            // textBoxSize
+            // 
+            this.textBoxSize.Location = new System.Drawing.Point(94, 32);
+            this.textBoxSize.Name = "textBoxSize";
+            this.textBoxSize.Size = new System.Drawing.Size(121, 20);
+            this.textBoxSize.TabIndex = 10;
+            // 
+            // textBoxPL
+            // 
+            this.textBoxPL.Location = new System.Drawing.Point(94, 58);
+            this.textBoxPL.Name = "textBoxPL";
+            this.textBoxPL.Size = new System.Drawing.Size(121, 20);
+            this.textBoxPL.TabIndex = 11;
+            // 
+            // textBoxClass
+            // 
+            this.textBoxClass.Location = new System.Drawing.Point(94, 84);
+            this.textBoxClass.Name = "textBoxClass";
+            this.textBoxClass.Size = new System.Drawing.Size(121, 20);
+            this.textBoxClass.TabIndex = 12;
+            // 
+            // textBoxStyle
+            // 
+            this.textBoxStyle.Location = new System.Drawing.Point(94, 110);
+            this.textBoxStyle.Name = "textBoxStyle";
+            this.textBoxStyle.Size = new System.Drawing.Size(121, 20);
+            this.textBoxStyle.TabIndex = 13;
+            // 
+            // textBoxPrice
+            // 
+            this.textBoxPrice.Location = new System.Drawing.Point(94, 136);
+            this.textBoxPrice.Name = "textBoxPrice";
+            this.textBoxPrice.Size = new System.Drawing.Size(121, 20);
+            this.textBoxPrice.TabIndex = 14;
+            // 
             // FormProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,11 +251,11 @@
             this.Controls.Add(this.textBoxName);
             this.MaximumSize = new System.Drawing.Size(816, 381);
             this.MinimumSize = new System.Drawing.Size(816, 381);
+            this.Name = "FormProduct";
             this.Text = "FormProduct";
             this.Load += new System.EventHandler(this.FormProduct_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrice2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,16 +272,16 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBoxStyle;
-        private System.Windows.Forms.NumericUpDown numericUpDownPrice2;
-        private System.Windows.Forms.ComboBox comboBoxClass;
-        private System.Windows.Forms.ComboBox comboBoxProductLine2;
-        private System.Windows.Forms.ComboBox comboBoxSize2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxCategory;
         private System.Windows.Forms.TextBox textBoxSubcategory;
+        private System.Windows.Forms.TextBox textBoxPrice;
+        private System.Windows.Forms.TextBox textBoxStyle;
+        private System.Windows.Forms.TextBox textBoxClass;
+        private System.Windows.Forms.TextBox textBoxPL;
+        private System.Windows.Forms.TextBox textBoxSize;
     }
 }

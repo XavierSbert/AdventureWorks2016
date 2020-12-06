@@ -22,7 +22,7 @@ namespace FormUI
 
         public override string ToString()
         {
-            return $"{Name}, {Category}, {Subcategory}, {Description}, {ProModel}, {Color}, {ListPrice}, {Size}, {ProLine}, {Class}, {Style}'";
+            return $"{Name}, {Category}, {Subcategory}, {Description}, {ListPrice}, {Size}, {ProLine}, {Class}, {Style}'";
         }
     }
 

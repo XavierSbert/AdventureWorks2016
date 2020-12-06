@@ -30,8 +30,6 @@ namespace FormUI
                     $" Production.ProductCategory.Name AS Category," +
                     $" Production.ProductSubcategory.Name AS Subcategory," +
                     $" Production.ProductDescription.Description," +
-                    $" Production.ProductModel.Name AS ProModel," +
-                    $" Production.Product.Color," +
                     $" Production.Product.ListPrice," +
                     $" Production.Product.Size," +
                     $" Production.Product.ProductLine AS ProLine," +
@@ -49,6 +47,9 @@ namespace FormUI
                 MessageBox.Show(product.Category.ToString());
                 textBoxCategory.Text = product.Category;
                 textBoxSubcategory.Text = product.Subcategory.ToString();
+                textBoxDescription.Text = product.Description.ToString();
+                textBoxPL.Text = product.ListPrice.ToString();
+
             }
         }
     }
