@@ -436,6 +436,15 @@ namespace FormUI
             }
 
         }
+
+        private void listViewProduct_DoubleClick(object sender, EventArgs e)
+        {
+            string productSelected = listViewProduct.SelectedItems[0].Text;
+            string ProductId = productSelected.Substring(0, productSelected.IndexOf(','));
+            FormProduct formProduct = new FormProduct();
+            formProduct.ShowDialog();
+        }
+
     }
 }
     

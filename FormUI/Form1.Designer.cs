@@ -30,7 +30,6 @@
         {
             this.textBoxProduct = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.comboBoxCategoria = new System.Windows.Forms.ComboBox();
             this.comboBoxSubCategory = new System.Windows.Forms.ComboBox();
             this.comboBoxSize = new System.Windows.Forms.ComboBox();
@@ -43,6 +42,7 @@
             this.comboBoxProductLine = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBoxFilter = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.numericUpDownMax = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownMin = new System.Windows.Forms.NumericUpDown();
             this.labelmax = new System.Windows.Forms.Label();
@@ -53,7 +53,7 @@
             this.comboBoxClass = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.AdventureWorks2016 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).BeginInit();
@@ -77,22 +77,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Product Name";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.button1.Image = global::FormUI.Properties.Resources.find;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(732, 25);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(144, 27);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "GLOBAL SEARCH";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBoxCategoria
             // 
@@ -155,12 +139,13 @@
             // 
             this.listViewProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewProduct.HideSelection = false;
-            this.listViewProduct.Location = new System.Drawing.Point(195, 62);
+            this.listViewProduct.Location = new System.Drawing.Point(194, 62);
             this.listViewProduct.Name = "listViewProduct";
             this.listViewProduct.Size = new System.Drawing.Size(682, 445);
             this.listViewProduct.TabIndex = 10;
             this.listViewProduct.UseCompatibleStateImageBehavior = false;
             this.listViewProduct.View = System.Windows.Forms.View.List;
+            this.listViewProduct.DoubleClick += new System.EventHandler(this.listViewProduct_DoubleClick);
             // 
             // comboBoxLanguage
             // 
@@ -229,6 +214,17 @@
             this.groupBoxFilter.TabIndex = 15;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Filters";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(12, 286);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(86, 20);
+            this.checkBox1.TabIndex = 26;
+            this.checkBox1.Text = "Available";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // numericUpDownMax
             // 
@@ -333,16 +329,21 @@
             this.AdventureWorks2016.TabIndex = 16;
             this.AdventureWorks2016.Text = "AdventureWorks2016";
             // 
-            // checkBox1
+            // button1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 286);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(86, 20);
-            this.checkBox1.TabIndex = 26;
-            this.checkBox1.Text = "Available";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.button1.Image = global::FormUI.Properties.Resources.find;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(732, 25);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(144, 27);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "GLOBAL SEARCH";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
