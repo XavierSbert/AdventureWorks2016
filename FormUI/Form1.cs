@@ -32,6 +32,7 @@ namespace FormUI
                 }
             }
             comboBoxLanguage.SelectedIndex = 0;
+
         }
 
         private void SubCatLoad(string cate)
@@ -166,7 +167,27 @@ namespace FormUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("ProductModel")))
+            {
+                string sql =
+                "Select DISTINCT Production.ProductModel.Name from Production.Product" +
+                " inner join Production.ProductModel on Production.ProductModel.ProductModelID = Production.Product.ProductModelID" +
+                " inner join Production.ProductModelProductDescriptionCulture on Production.ProductModelProductDescriptionCulture.ProductModelID = Production.ProductModel.ProductModelID" +
+                " inner join Production.ProductDescription on Production.ProductDescription.ProductDescriptionID = Production.ProductModelProductDescriptionCulture.ProductDescriptionID" +
+                " inner join Production.ProductSubcategory on Production.Product.ProductSubcategoryID = Production.ProductSubcategory.ProductSubcategoryID" +
+                " inner join Production.ProductCategory on Production.ProductCategory.ProductCategoryID = Production.ProductSubcategory.ProductCategoryID" +
+                $" WHERE Production.ProductCategory.Name LIKE '{comboBoxCategoria.Text}' AND Production.ProductSubcategory.Name LIKE '{comboBoxSubCategory.Text}' AND Production.ProductModelProductDescriptionCulture.CultureID = '{comboBoxLanguage.Text}' AND Production.ProductModel.Name like '%{textBoxProduct.Text}%'";
+                List<string> pl = new List<string>();
+                pl = connection.Query<string>(sql).ToList();
+                if (pl.Count() > 1)
+                {
+                    foreach (string category in pl)
+                    {
+                        listViewProduct.Items.Add(category);
+                    }
+                }
 
+            }
         }
 
         private void comboBoxCategoria_SelectedIndexChanged(object sender, EventArgs e)
@@ -240,11 +261,12 @@ namespace FormUI
                 comboBoxSize.Items.Clear();
                 comboBoxSize.Text = "";
                 comboBoxProductLine.Items.Clear();
+                numericUpDownMin.Value = 0;
+                numericUpDownMax.Value = 9999;
                 StyleLoad(comboBoxCategoria.Text, comboBoxSubCategory.Text);
                 ClassLoad(comboBoxCategoria.Text, comboBoxSubCategory.Text);
                 ProductLineLoad(comboBoxCategoria.Text, comboBoxSubCategory.Text);
                 SizeLoad(comboBoxCategoria.Text, comboBoxSubCategory.Text);
-               
             }
         }
 
@@ -267,6 +289,7 @@ namespace FormUI
             $" AND ( Production.Product.ProductLine is null or Production.Product.ProductLine like '%{comboBoxProductLine.Text}%' )" +
             $" AND ( Production.Product.Class is null or Production.Product.Class like '%{comboBoxClass.Text}%')" +
             $" AND ( Production.Product.Style is null or Production.Product.Style like '%{comboBoxStyle.Text}%')" +
+            $" and Production.Product.ListPrice BETWEEN {numericUpDownMin.Value} and {numericUpDownMax.Value} " +
             $" AND Production.ProductModelProductDescriptionCulture.CultureID = '{comboBoxLanguage.Text}'";
 
             List<Product> size = new List<Product>();
@@ -315,13 +338,14 @@ namespace FormUI
             }
         }
 
-        private void max_KeyPress(object sender, KeyPressEventArgs e)
+        private void numericUpDownMin_ValueChanged(object sender, EventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-        (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
+            Filters();
+        }
+
+        private void numericUpDownMax_ValueChanged(object sender, EventArgs e)
+        {
+            Filters();
         }
     }
 }
