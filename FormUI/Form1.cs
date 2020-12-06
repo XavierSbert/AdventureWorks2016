@@ -427,7 +427,7 @@ namespace FormUI
                         foreach (Product category in size)
                         {
                             listViewProduct.Items.Add(category.ToString());
-                        }
+                        } 
                     }
                 }
             }else
@@ -439,12 +439,13 @@ namespace FormUI
 
         private void listViewProduct_DoubleClick(object sender, EventArgs e)
         {
-            string productSelected = listViewProduct.SelectedItems[0].Text;
-            string ProductId = productSelected.Substring(0, productSelected.IndexOf(','));
-            FormProduct formProduct = new FormProduct();
-            formProduct.ShowDialog();
+            MessageBox.Show(listViewProduct.SelectedItems[0].Text);
+                string productSelected = listViewProduct.SelectedItems[0].Text;
+            MessageBox.Show(productSelected.Split(',')[0]);
+            string ProductName = productSelected.Split(',')[0];
+                FormProduct formProduct = new FormProduct(ProductName);
+                formProduct.ShowDialog();
         }
 
     }
 }
-    

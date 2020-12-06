@@ -15,7 +15,8 @@ namespace FormUI
 
         public override string ToString()
         {
-            return $"{Name} {Description}";
+            return $"{Name}, {Description}";
         }
+
     }
 }

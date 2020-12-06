@@ -140,6 +140,7 @@
             this.listViewProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewProduct.HideSelection = false;
             this.listViewProduct.Location = new System.Drawing.Point(194, 62);
+            this.listViewProduct.MultiSelect = false;
             this.listViewProduct.Name = "listViewProduct";
             this.listViewProduct.Size = new System.Drawing.Size(682, 445);
             this.listViewProduct.TabIndex = 10;
